@@ -515,12 +515,12 @@ def show_scenarios():
     
     col1, col2, col3 = st.columns(3)
     
-    with col1:
+with col1:
         st.markdown("""
         **🟢 CENÁRIO 1: MÁRCIA**
         
         Cliente com orçamento definido.
-        Já pesquisou e quer começar logo.
+        Já pesquisou e quer começar.
         
         *Dificuldade: Fácil*
         """)
@@ -532,7 +532,7 @@ def show_scenarios():
         st.markdown("""
         **🟡 CENÁRIO 2: PAULA**
         
-        Interessada mas sem verba pronta.
+        Interessada mas sem verba.
         "Vou ver se consigo juntar..."
         
         *Dificuldade: Média*
@@ -547,7 +547,6 @@ def show_scenarios():
         
         Só pesquisando preços.
         "Talvez ano que vem..."
-        
         
         *Dificuldade: Difícil*
         """)
