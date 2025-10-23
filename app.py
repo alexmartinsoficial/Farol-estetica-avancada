@@ -341,7 +341,7 @@ def reset_marcia():
     st.session_state.marcia_step = 0
     st.session_state.marcia_score = 0
     st.session_state.marcia_history = []
-    def reset_paula():
+def reset_paula():
     st.session_state.paula_step = 0
     st.session_state.paula_score = 0
     st.session_state.paula_history = []
