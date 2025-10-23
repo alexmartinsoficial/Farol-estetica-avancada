@@ -220,6 +220,99 @@ MARCIA_SCENARIO = {
     ]
 }
 
+# ==========================================
+# DADOS DO CENÁRIO: PAULA (AMARELO)
+# ==========================================
+
+PAULA_SCENARIO = {
+    'nome': 'Paula',
+    'perfil': '🟡 SINAL AMARELO',
+    'contexto': '''Uma potencial cliente chamada **Paula (28 anos)** ligou perguntando sobre limpeza de pele profunda e tratamentos faciais.
+
+**Seu objetivo:** Descobrir se ela tem condições de investir AGORA ou se vai "pensar para sempre". Você precisa criar urgência e educar sobre valor.''',
+    
+    'steps': [
+        {
+            'cliente_fala': 'Oi! Queria saber quanto custa um tratamento completo de pele. Tenho muita acne.',
+            'opcoes': [
+                {
+                    'texto': 'O tratamento custa R$ 2.800 no total. Consegue fazer?',
+                    'pontos': -2,
+                    'tipo': 'danger',
+                    'feedback': '❌ **ERRO:** Você jogou o preço sem criar valor. Paula vai achar caro e desistir.',
+                    'resposta_cliente': 'Nossa, é caro. Vou ver se consigo juntar esse dinheiro...'
+                },
+                {
+                    'texto': 'Antes de falar sobre valores, me conta: há quanto tempo você tem esse problema?',
+                    'pontos': 3,
+                    'tipo': 'success',
+                    'feedback': '✅ **ÓTIMO!** Você começou entendendo a dor dela antes de falar de preço. Criando valor!',
+                    'resposta_cliente': 'Ah, faz uns 3 anos já. Já tentei vários produtos mas não resolveu.'
+                },
+                {
+                    'texto': 'Posso fazer uma avaliação gratuita! Quando pode vir?',
+                    'pontos': 0,
+                    'tipo': 'warning',
+                    'feedback': '⚠️ **CUIDADO:** Avaliação grátis sem qualificar orçamento? Pode virar "turismo de consultório".',
+                    'resposta_cliente': 'Posso! Mas antes queria saber se é muito caro...'
+                },
+            ]
+        },
+        {
+            'cliente_fala': 'Entendi. E quanto custa mais ou menos esse tratamento?',
+            'opcoes': [
+                {
+                    'texto': 'Varia de R$ 2.000 a R$ 3.500 dependendo do caso. Vou ver se consigo juntar o dinheiro é um sinal AMARELO. O que você responde?',
+                    'pontos': 1,
+                    'tipo': 'warning',
+                    'feedback': '⚠️ **PODE MELHORAR:** Você deu a faixa mas não INVESTIGOU a frase "vou ver se consigo". Precisa descobrir se é real!',
+                    'resposta_cliente': 'É... não sei se consigo juntar tudo isso agora.'
+                },
+                {
+                    'texto': 'Entendo que pode parecer um investimento alto. Me diz: quanto tempo mais você aguenta conviver com esse problema?',
+                    'pontos': 3,
+                    'tipo': 'success',
+                    'feedback': '✅ **EXCELENTE!** Você ancorando o CUSTO DE NÃO TRATAR. Educando sobre valor!',
+                    'resposta_cliente': 'É verdade... já sofro com isso há anos. Quanto seria?'
+                },
+                {
+                    'texto': 'Normalmente R$ 2.800, mas se você fechar hoje faço por R$ 2.200.',
+                    'pontos': -2,
+                    'tipo': 'danger',
+                    'feedback': '❌ **ERRO GRAVE:** Desconto logo de cara em cliente AMARELO? Você confirmou que ela pode SEMPRE pedir desconto!',
+                    'resposta_cliente': 'Hmm... ainda acho caro. Consegue fazer por R$ 2.000?'
+                },
+            ]
+        },
+        {
+            'cliente_fala': 'Seria em torno de R$ 2.800. Mas eu não tenho esse dinheiro guardado agora...',
+            'opcoes': [
+                {
+                    'texto': 'Entendo. Você conseguiria organizar em quanto tempo? Pergunto porque acne pode piorar e depois o tratamento fica mais longo.',
+                    'pontos': 3,
+                    'tipo': 'success',
+                    'feedback': '✅ **PERFEITO!** Você INVESTIGOU o prazo E criou urgência com consequência real. Excelente qualificação!',
+                    'resposta_cliente': 'Acho que em 2 meses consigo juntar. Você tem alguma forma de parcelar?'
+                },
+                {
+                    'texto': 'Sem problema! Quando tiver o dinheiro, você me procura.',
+                    'pontos': -2,
+                    'tipo': 'danger',
+                    'feedback': '❌ **PERDEU A CLIENTE!** Você desistiu fácil demais. Cliente Amarelo precisa de educação e facilitação, não desistência.',
+                    'resposta_cliente': 'Tá bom então. Obrigada! (Ela nunca mais voltou)'
+                },
+                {
+                    'texto': 'Ah que pena. Mas olha, posso parcelar em até 3x no cartão. Assim você consegue começar já e não deixa piorar.',
+                    'pontos': 2,
+                    'tipo': 'success',
+                    'feedback': '✅ **BOM!** Você ofereceu solução. Mas poderia ter investigado mais ANTES de dar a solução de pagamento.',
+                    'resposta_cliente': 'Hmm 3x fica quanto? Deixa eu ver se cabe no meu cartão...'
+                },
+            ]
+        },
+    ]
+}
+
 # Inicializar session state
 if 'page' not in st.session_state:
     st.session_state.page = 'capa'
@@ -229,6 +322,12 @@ if 'marcia_score' not in st.session_state:
     st.session_state.marcia_score = 0
 if 'marcia_history' not in st.session_state:
     st.session_state.marcia_history = []
+if 'paula_step' not in st.session_state:
+    st.session_state.paula_step = 0
+if 'paula_score' not in st.session_state:
+    st.session_state.paula_score = 0
+if 'paula_history' not in st.session_state:
+    st.session_state.paula_history = []
 
 # ==========================================
 # FUNÇÕES DE NAVEGAÇÃO
@@ -242,6 +341,10 @@ def reset_marcia():
     st.session_state.marcia_step = 0
     st.session_state.marcia_score = 0
     st.session_state.marcia_history = []
+    def reset_paula():
+    st.session_state.paula_step = 0
+    st.session_state.paula_score = 0
+    st.session_state.paula_history = []
 
 # ==========================================
 # TELA 1: CAPA PROVOCATIVA
@@ -331,7 +434,9 @@ def show_scenarios():
         
         *Dificuldade: Média*
         """)
-        st.button("Em breve", disabled=True, key="c2", use_container_width=True)
+        if st.button("Começar", key="start_paula", type="primary", use_container_width=True):
+            reset_paula()
+            go_to_page('paula')
     
     with col3:
         st.markdown("""
@@ -487,6 +592,129 @@ def show_marcia_result():
     show_cta_vendas()
 
 # ==========================================
+# TELA 5: SIMULADOR PAULA
+# ==========================================
+
+def show_paula():
+    scenario = PAULA_SCENARIO
+    current_step = st.session_state.paula_step
+    
+    st.markdown(f'<div class="big-title">📱 Cenário: {scenario["nome"]}</div>', unsafe_allow_html=True)
+    st.markdown(f'**Perfil:** {scenario["perfil"]}')
+    
+    if current_step == 0:
+        st.info(scenario['contexto'])
+        st.markdown("---")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown(f'<div class="score-display">📊 Pontos: {st.session_state.paula_score}</div>', unsafe_allow_html=True)
+    with col2:
+        st.markdown(f'<div class="score-display">🎯 Pergunta: {current_step + 1}/{len(scenario["steps"])}</div>', unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    if current_step >= len(scenario['steps']):
+        show_paula_result()
+        return
+    
+    step_data = scenario['steps'][current_step]
+    
+    st.markdown(f'''
+    <div class="cliente-bubble">
+        <strong>💬 {scenario["nome"]} diz:</strong><br>
+        "{step_data["cliente_fala"]}"
+    </div>
+    ''', unsafe_allow_html=True)
+    
+    st.markdown("### Como você responde?")
+    
+    for idx, opcao in enumerate(step_data['opcoes']):
+        letra = chr(65 + idx)
+        if st.button(f"{letra}) {opcao['texto']}", key=f"opt_paula_{current_step}_{idx}", use_container_width=True):
+            st.session_state.paula_history.append({
+                'step': current_step,
+                'escolha': opcao['texto'],
+                'pontos': opcao['pontos'],
+                'feedback': opcao['feedback'],
+                'resposta': opcao['resposta_cliente']
+            })
+            st.session_state.paula_score += opcao['pontos']
+            st.session_state.paula_step += 1
+            st.rerun()
+    
+    st.markdown("---")
+    
+    if st.button("⬅️ Voltar para Cenários"):
+        reset_paula()
+        go_to_page('scenarios')
+
+# ==========================================
+# TELA 6: RESULTADO PAULA
+# ==========================================
+
+def show_paula_result():
+    st.markdown('<div class="big-title">🎯 Resultado Final</div>', unsafe_allow_html=True)
+    
+    score = st.session_state.paula_score
+    max_score = 9
+    
+    if score >= 7:
+        classificacao = "🟢 EXCELENTE! Você sabe lidar com clientes AMARELOS"
+        cor = "success"
+        mensagem = "Você domina a arte de educar clientes indecisos, criar urgência e não dar descontos desnecessários. Cliente Amarelo nas suas mãos vira Verde!"
+    elif score >= 3:
+        classificacao = "🟡 RAZOÁVEL - Precisa melhorar"
+        cor = "warning"
+        mensagem = "Você até qualifica, mas ainda comete erros que fazem você perder clientes bons ou dar descontos que não precisava."
+    else:
+        classificacao = "🔴 CUIDADO! Você está perdendo dinheiro"
+        cor = "danger"
+        mensagem = "Cliente Amarelo é quem mais te faz dar desconto ou perder tempo. Você precisa urgentemente melhorar sua qualificação!"
+    
+    st.markdown(f'<div class="score-display" style="font-size: 32px;">{classificacao}</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="score-display">Pontuação: {score}/{max_score} pontos</div>', unsafe_allow_html=True)
+    
+    if cor == "success":
+        st.success(mensagem)
+    elif cor == "warning":
+        st.warning(mensagem)
+    else:
+        st.error(mensagem)
+    
+    st.markdown("---")
+    st.markdown("### 📝 Revisão das suas escolhas:")
+    
+    for idx, item in enumerate(st.session_state.paula_history):
+        with st.expander(f"Pergunta {idx + 1} ({item['pontos']:+d} pontos)"):
+            st.markdown(f"**Você escolheu:** {item['escolha']}")
+            
+            feedback_class = "feedback-warning"
+            for opcao in PAULA_SCENARIO['steps'][item['step']]['opcoes']:
+                if opcao['texto'] == item['escolha']:
+                    feedback_class = f"feedback-{opcao['tipo']}"
+                    break
+            
+            st.markdown(f'<div class="{feedback_class}">{item["feedback"]}</div>', unsafe_allow_html=True)
+            st.markdown(f"**Cliente respondeu:** \"{item['resposta']}\"")
+    
+    st.markdown("---")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("🔄 Tentar Novamente", use_container_width=True, type="primary"):
+            reset_paula()
+            go_to_page('paula')
+    
+    with col2:
+        if st.button("🏠 Voltar ao Início", use_container_width=True):
+            reset_paula()
+            go_to_page('capa')
+    
+    st.markdown("---")
+    show_cta_vendas()
+    
+# ==========================================
 # CTA DE VENDAS
 # ==========================================
 
@@ -558,3 +786,5 @@ elif st.session_state.page == 'scenarios':
     show_scenarios()
 elif st.session_state.page == 'marcia':
     show_marcia()
+elif st.session_state.page == 'paula':
+    show_paula()
