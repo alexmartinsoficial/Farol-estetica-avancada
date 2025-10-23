@@ -243,10 +243,10 @@ PAULA_SCENARIO = {
                     'resposta_cliente': 'Nossa, é caro. Vou ver se consigo juntar esse dinheiro...'
                 },
                 {
-                    'texto': 'Antes de falar sobre valores, me conta: há quanto tempo você tem esse problema?',
+                    'texto': 'Entendi. Antes de falar sobre valores, me conta: há quanto tempo você tem esse problema?',
                     'pontos': 3,
                     'tipo': 'success',
-                    'feedback': '✅ **ÓTIMO!** Você começou entendendo a dor dela antes de falar de preço. Criando valor!',
+                    'feedback': '✅ **ÓTIMO!** Você começou entendendo a dor dela antes de falar de preço. Criando valor e rapport!',
                     'resposta_cliente': 'Ah, faz uns 3 anos já. Já tentei vários produtos mas não resolveu.'
                 },
                 {
@@ -259,21 +259,21 @@ PAULA_SCENARIO = {
             ]
         },
         {
-            'cliente_fala': 'Entendi. E quanto custa mais ou menos esse tratamento?',
+            'cliente_fala': 'Legal! E quanto custa mais ou menos esse tratamento?',
             'opcoes': [
                 {
-                    'texto': 'Varia de R$ 2.000 a R$ 3.500 dependendo do caso. Você já tem uma ideia de quanto pode investir?',
+                    'texto': 'Varia entre R$ 2.000 e R$ 3.500. Vou ver os detalhes do seu caso e te mando um orçamento.',
                     'pontos': 1,
                     'tipo': 'warning',
-                    'feedback': '⚠️ **PODE MELHORAR:** Você deu a faixa mas não INVESTIGOU profundamente o orçamento dela. Precisa descobrir se é real!',
-                    'resposta_cliente': 'É... não sei se consigo juntar tudo isso agora.'
+                    'feedback': '⚠️ **PODE MELHORAR:** Você deu a faixa mas não qualificou se ela tem condição de pagar. Pode perder tempo.',
+                    'resposta_cliente': 'Tá bom. Mas não sei se tenho esse dinheiro todo agora...'
                 },
                 {
-                    'texto': 'Entendo que pode parecer um investimento alto. Me diz: quanto tempo mais você aguenta conviver com esse problema?',
+                    'texto': 'Varia entre R$ 2.000 e R$ 3.500 dependendo do caso. Você já separou algum valor para tratar isso?',
                     'pontos': 3,
                     'tipo': 'success',
-                    'feedback': '✅ **EXCELENTE!** Você ancorando o CUSTO DE NÃO TRATAR. Educando sobre valor!',
-                    'resposta_cliente': 'É verdade... já sofro com isso há anos. Quanto seria?'
+                    'feedback': '✅ **EXCELENTE!** Você deu a faixa E qualificou o orçamento dela diretamente. Perfeito!',
+                    'resposta_cliente': 'Não tenho tudo guardado ainda... estava pensando em uns R$ 1.500 só.'
                 },
                 {
                     'texto': 'Normalmente R$ 2.800, mas se você fechar hoje faço por R$ 2.200.',
@@ -285,14 +285,14 @@ PAULA_SCENARIO = {
             ]
         },
         {
-            'cliente_fala': 'Seria em torno de R$ 2.800. Mas eu não tenho esse dinheiro guardado agora...',
+            'cliente_fala': 'Seria em torno de R$ 2.800 então? Mas eu não tenho esse dinheiro guardado agora...',
             'opcoes': [
                 {
-                    'texto': 'Entendo. Você conseguiria organizar em quanto tempo? Pergunto porque acne pode piorar e depois o tratamento fica mais longo.',
-                    'pontos': 3,
+                    'texto': 'Entendo. Você conseguiria organizar em quanto tempo? Pergunto porque quanto mais tempo adia, mais o problema pode se agravar.',
+                    'pontos': 2,
                     'tipo': 'success',
-                    'feedback': '✅ **PERFEITO!** Você INVESTIGOU o prazo E criou urgência com consequência real. Excelente qualificação!',
-                    'resposta_cliente': 'Acho que em 2 meses consigo juntar. Você tem alguma forma de parcelar?'
+                    'feedback': '✅ **BOM!** Você investigou o prazo E criou urgência. Mas poderia ter oferecido solução de pagamento.',
+                    'resposta_cliente': 'Acho que em 2 meses consigo juntar. Você trabalha com parcelamento?'
                 },
                 {
                     'texto': 'Sem problema! Quando tiver o dinheiro, você me procura.',
@@ -302,11 +302,11 @@ PAULA_SCENARIO = {
                     'resposta_cliente': 'Tá bom então. Obrigada! (Ela nunca mais voltou)'
                 },
                 {
-                    'texto': 'Ah que pena. Mas olha, posso parcelar em até 3x no cartão. Assim você consegue começar já e não deixa piorar.',
-                    'pontos': 2,
+                    'texto': 'Trabalho com parcelamento, geralmente entre 3x e 6x. As parcelas ficam entre R$ 450 e R$ 950. Na avaliação vejo seu caso e monto o melhor plano. Essa faixa cabe para você?',
+                    'pontos': 3,
                     'tipo': 'success',
-                    'feedback': '✅ **BOM!** Você ofereceu solução. Mas poderia ter investigado mais ANTES de dar a solução de pagamento.',
-                    'resposta_cliente': 'Hmm 3x fica quanto? Deixa eu ver se cabe no meu cartão...'
+                    'feedback': '✅ **PERFEITO!** Você deu faixa clara (qualificou), não deu exatidão (precisa ir na avaliação), e mencionou vantagem. Excelente!',
+                    'resposta_cliente': 'Acho que sim! Vou ver direitinho mas parece que dá. Quando posso ir fazer a avaliação?'
                 },
             ]
         },
