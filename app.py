@@ -262,10 +262,10 @@ PAULA_SCENARIO = {
             'cliente_fala': 'Entendi. E quanto custa mais ou menos esse tratamento?',
             'opcoes': [
                 {
-                    'texto': 'Varia de R$ 2.000 a R$ 3.500 dependendo do caso. Vou ver se consigo juntar o dinheiro é um sinal AMARELO. O que você responde?',
+                    'texto': 'Varia de R$ 2.000 a R$ 3.500 dependendo do caso. Você já tem uma ideia de quanto pode investir?',
                     'pontos': 1,
                     'tipo': 'warning',
-                    'feedback': '⚠️ **PODE MELHORAR:** Você deu a faixa mas não INVESTIGOU a frase "vou ver se consigo". Precisa descobrir se é real!',
+                    'feedback': '⚠️ **PODE MELHORAR:** Você deu a faixa mas não INVESTIGOU profundamente o orçamento dela. Precisa descobrir se é real!',
                     'resposta_cliente': 'É... não sei se consigo juntar tudo isso agora.'
                 },
                 {
