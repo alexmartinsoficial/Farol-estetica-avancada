@@ -550,7 +550,7 @@ def show_scenarios():
         
         *Dificuldade: Difícil*
         """)
-    if st.button("Começar", key="start_carla", type="primary", use_container_width=True):
+        if st.button("Começar", key="start_carla", type="primary", use_container_width=True):
             reset_carla()
             go_to_page('carla')
     
@@ -558,7 +558,7 @@ def show_scenarios():
     
     if st.button("⬅️ Voltar para o Início"):
         go_to_page('capa')
-
+        
 # ==========================================
 # TELA 3: SIMULADOR MÁRCIA
 # ==========================================
