@@ -313,6 +313,99 @@ PAULA_SCENARIO = {
     ]
 }
 
+# ==========================================
+# DADOS DO CENÁRIO: CARLA (VERMELHO)
+# ==========================================
+
+CARLA_SCENARIO = {
+    'nome': 'Carla',
+    'perfil': '🔴 SINAL VERMELHO',
+    'contexto': '''Uma pessoa chamada **Carla (42 anos)** ligou "só para saber informações" sobre procedimentos estéticos.
+
+**Seu objetivo:** Identificar rapidamente que ela NÃO vai fechar e não desperdiçar seu tempo. Aprenda a desqualificar sem culpa.''',
+    
+    'steps': [
+        {
+            'cliente_fala': 'Oi, tudo bem? Queria saber quanto custa botox. É só para ter uma ideia mesmo.',
+            'opcoes': [
+                {
+                    'texto': 'Botox custa R$ 1.200. Quer agendar uma avaliação?',
+                    'pontos': -2,
+                    'tipo': 'danger',
+                    'feedback': '❌ **ERRO:** Você deu o preço e ofereceu avaliação para quem claramente disse "só quero ideia". Vai perder tempo!',
+                    'resposta_cliente': 'Ah tá. Vou ver outros lugares também. Obrigada!'
+                },
+                {
+                    'texto': 'Claro! Mas antes, me conta: você está pensando em fazer quando?',
+                    'pontos': 3,
+                    'tipo': 'success',
+                    'feedback': '✅ **ÓTIMO!** Você está qualificando a urgência ANTES de dar informações. Descobrindo se vale seu tempo.',
+                    'resposta_cliente': 'Ah, não sei ainda... Talvez ano que vem. Estou só pesquisando preços mesmo.'
+                },
+                {
+                    'texto': 'Posso fazer uma avaliação gratuita! Quando você pode vir?',
+                    'pontos': -3,
+                    'tipo': 'danger',
+                    'feedback': '❌ **PÉSSIMO!** Ela disse "só queria saber" e você ofereceu avaliação grátis? Turismo de consultório garantido!',
+                    'resposta_cliente': 'Ah não sei, tô bem sem tempo. Só queria o preço mesmo.'
+                },
+            ]
+        },
+        {
+            'cliente_fala': 'É que não tenho pressa. Só estou vendo quanto custa em vários lugares.',
+            'opcoes': [
+                {
+                    'texto': 'Entendo. Deixa eu te passar alguns materiais educativos sobre botox. Quando decidir, pode me procurar!',
+                    'pontos': 3,
+                    'tipo': 'success',
+                    'feedback': '✅ **PERFEITO!** Você identificou o Sinal Vermelho e não desperdiçou tempo. Educou brevemente e liberou sua energia.',
+                    'resposta_cliente': 'Legal, obrigada! Se eu decidir, entro em contato.'
+                },
+                {
+                    'texto': 'Mas posso te fazer um preço especial se você decidir hoje! Que tal R$ 1.000?',
+                    'pontos': -3,
+                    'tipo': 'danger',
+                    'feedback': '❌ **TERRÍVEL!** Você deu desconto para quem NÃO TEM URGÊNCIA e está "só pesquisando"! Desvalorizou totalmente seu trabalho.',
+                    'resposta_cliente': 'Hmm, ainda acho caro. Vou continuar pesquisando.'
+                },
+                {
+                    'texto': 'Entendo, mas deixa eu te explicar todos os benefícios do botox...',
+                    'pontos': -1,
+                    'tipo': 'warning',
+                    'feedback': '⚠️ **PERDENDO TEMPO:** Ela já disse que não tem pressa e você insiste em vender. Cliente Vermelho não vira Verde com discurso.',
+                    'resposta_cliente': 'Tá, obrigada pelas informações. Vou pensar com calma.'
+                },
+            ]
+        },
+        {
+            'cliente_fala': 'Você faz pagamento parcelado? Porque agora não tenho como pagar à vista.',
+            'opcoes': [
+                {
+                    'texto': 'Faço sim! Parcelo em até 6x. Quer agendar para quando?',
+                    'pontos': -2,
+                    'tipo': 'danger',
+                    'feedback': '❌ **ERRO:** Você está facilitando demais para quem não demonstrou interesse real. Ela vai "pensar" eternamente.',
+                    'resposta_cliente': 'Deixa eu ver certinho minha situação financeira e eu te aviso...'
+                },
+                {
+                    'texto': 'Faço parcelado sim, mas só para quem está pronto para começar. Pelo que você falou, não parece ser o momento ideal para você investir nisso agora.',
+                    'pontos': 3,
+                    'tipo': 'success',
+                    'feedback': '✅ **EXCELENTE!** Você foi direto e honesto. Desqualificou educadamente e não criou falsas expectativas. Profissionalismo!',
+                    'resposta_cliente': 'É verdade, não é o melhor momento mesmo. Quando for a hora certa, entro em contato.'
+                },
+                {
+                    'texto': 'Sim! E se você trouxer uma amiga, dou 20% de desconto para as duas!',
+                    'pontos': -3,
+                    'tipo': 'danger',
+                    'feedback': '❌ **DESESPERO!** Você está oferecendo desconto E indicação para alguém que claramente não vai fechar. Parou de se valorizar.',
+                    'resposta_cliente': 'Ah que legal! Vou ver com minhas amigas e a gente vê... (nunca mais apareceu)'
+                },
+            ]
+        },
+    ]
+}
+
 # Inicializar session state
 if 'page' not in st.session_state:
     st.session_state.page = 'capa'
@@ -328,6 +421,12 @@ if 'paula_score' not in st.session_state:
     st.session_state.paula_score = 0
 if 'paula_history' not in st.session_state:
     st.session_state.paula_history = []
+if 'carla_step' not in st.session_state:
+    st.session_state.carla_step = 0
+if 'carla_score' not in st.session_state:
+    st.session_state.carla_score = 0
+if 'carla_history' not in st.session_state:
+    st.session_state.carla_history = []
 
 # ==========================================
 # FUNÇÕES DE NAVEGAÇÃO
@@ -345,6 +444,10 @@ def reset_paula():
     st.session_state.paula_step = 0
     st.session_state.paula_score = 0
     st.session_state.paula_history = []
+def reset_carla():
+    st.session_state.carla_step = 0
+    st.session_state.carla_score = 0
+    st.session_state.carla_history = []
 
 # ==========================================
 # TELA 1: CAPA PROVOCATIVA
@@ -447,7 +550,9 @@ def show_scenarios():
         
         *Dificuldade: Difícil*
         """)
-        st.button("Em breve", disabled=True, key="c3", use_container_width=True)
+    if st.button("Começar", key="start_carla", type="primary", use_container_width=True):
+            reset_carla()
+            go_to_page('carla')
     
     st.markdown("---")
     
@@ -713,6 +818,129 @@ def show_paula_result():
     
     st.markdown("---")
     show_cta_vendas()
+
+# ==========================================
+# TELA 7: SIMULADOR CARLA
+# ==========================================
+
+def show_carla():
+    scenario = CARLA_SCENARIO
+    current_step = st.session_state.carla_step
+    
+    st.markdown(f'<div class="big-title">📱 Cenário: {scenario["nome"]}</div>', unsafe_allow_html=True)
+    st.markdown(f'**Perfil:** {scenario["perfil"]}')
+    
+    if current_step == 0:
+        st.warning(scenario['contexto'])
+        st.markdown("---")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown(f'<div class="score-display">📊 Pontos: {st.session_state.carla_score}</div>', unsafe_allow_html=True)
+    with col2:
+        st.markdown(f'<div class="score-display">🎯 Pergunta: {current_step + 1}/{len(scenario["steps"])}</div>', unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    if current_step >= len(scenario['steps']):
+        show_carla_result()
+        return
+    
+    step_data = scenario['steps'][current_step]
+    
+    st.markdown(f'''
+    <div class="cliente-bubble">
+        <strong>💬 {scenario["nome"]} diz:</strong><br>
+        "{step_data["cliente_fala"]}"
+    </div>
+    ''', unsafe_allow_html=True)
+    
+    st.markdown("### Como você responde?")
+    
+    for idx, opcao in enumerate(step_data['opcoes']):
+        letra = chr(65 + idx)
+        if st.button(f"{letra}) {opcao['texto']}", key=f"opt_carla_{current_step}_{idx}", use_container_width=True):
+            st.session_state.carla_history.append({
+                'step': current_step,
+                'escolha': opcao['texto'],
+                'pontos': opcao['pontos'],
+                'feedback': opcao['feedback'],
+                'resposta': opcao['resposta_cliente']
+            })
+            st.session_state.carla_score += opcao['pontos']
+            st.session_state.carla_step += 1
+            st.rerun()
+    
+    st.markdown("---")
+    
+    if st.button("⬅️ Voltar para Cenários"):
+        reset_carla()
+        go_to_page('scenarios')
+
+# ==========================================
+# TELA 8: RESULTADO CARLA
+# ==========================================
+
+def show_carla_result():
+    st.markdown('<div class="big-title">🎯 Resultado Final</div>', unsafe_allow_html=True)
+    
+    score = st.session_state.carla_score
+    max_score = 9
+    
+    if score >= 7:
+        classificacao = "🟢 MESTRE DA DESQUALIFICAÇÃO!"
+        cor = "success"
+        mensagem = "Você é EXPERT em identificar clientes Vermelhos e não desperdiçar tempo! Sabe quando dizer NÃO sem culpa. Parabéns!"
+    elif score >= 3:
+        classificacao = "🟡 AINDA TEM PENA DE DESQUALIFICAR"
+        cor = "warning"
+        mensagem = "Você identifica cliente Vermelho, mas ainda perde tempo tentando converter. Aprenda a soltar!"
+    else:
+        classificacao = "🔴 VOCÊ É O CLIENTE FAVORITO DOS CURIOSOS"
+        cor = "danger"
+        mensagem = "Você está perdendo MUITO tempo e dando desconto para quem nunca vai comprar. Urgente rever sua qualificação!"
+    
+    st.markdown(f'<div class="score-display" style="font-size: 32px;">{classificacao}</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="score-display">Pontuação: {score}/{max_score} pontos</div>', unsafe_allow_html=True)
+    
+    if cor == "success":
+        st.success(mensagem)
+    elif cor == "warning":
+        st.warning(mensagem)
+    else:
+        st.error(mensagem)
+    
+    st.markdown("---")
+    st.markdown("### 📝 Revisão das suas escolhas:")
+    
+    for idx, item in enumerate(st.session_state.carla_history):
+        with st.expander(f"Pergunta {idx + 1} ({item['pontos']:+d} pontos)"):
+            st.markdown(f"**Você escolheu:** {item['escolha']}")
+            
+            feedback_class = "feedback-danger"
+            for opcao in CARLA_SCENARIO['steps'][item['step']]['opcoes']:
+                if opcao['texto'] == item['escolha']:
+                    feedback_class = f"feedback-{opcao['tipo']}"
+                    break
+            
+            st.markdown(f'<div class="{feedback_class}">{item["feedback"]}</div>', unsafe_allow_html=True)
+            st.markdown(f"**Cliente respondeu:** \"{item['resposta']}\"")
+    
+    st.markdown("---")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("🔄 Tentar Novamente", use_container_width=True, type="primary"):
+            reset_carla()
+            go_to_page('carla')
+    
+    with col2:
+        if st.button("🏠 Voltar ao Início", use_container_width=True):
+            reset_carla()
+            go_to_page('capa')
+    
+    st.markdown("---")
+    show_cta_vendas()
     
 # ==========================================
 # CTA DE VENDAS
@@ -788,3 +1016,5 @@ elif st.session_state.page == 'marcia':
     show_marcia()
 elif st.session_state.page == 'paula':
     show_paula()
+elif st.session_state.page == 'carla':
+    show_carla()
