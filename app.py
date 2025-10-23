@@ -548,9 +548,9 @@ def show_scenarios():
         Só pesquisando preços.
         "Talvez ano que vem..."
         
+        
         *Dificuldade: Difícil*
         """)
-        
         if st.button("Começar", key="start_carla", type="primary", use_container_width=True):
             reset_carla()
             go_to_page('carla')
